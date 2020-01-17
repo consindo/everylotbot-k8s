@@ -11,7 +11,7 @@ module "wlg" {
   name     = "wlg"
   account  = "everylotwlg"
   db       = "everylot_wlg"
-  schedule = "*/30 * * * *"
+  schedule = "*/31 * * * *"
 }
 
 module "chc" {
@@ -19,5 +19,5 @@ module "chc" {
   name     = "chc"
   account  = "everylotchc"
   db       = "everylot_chc"
-  schedule = "*/30 * * * *"
+  schedule = "*/32 * * * *"
 }
