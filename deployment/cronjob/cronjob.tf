@@ -19,6 +19,18 @@ variable "schedule" {
   default     = "* */1 * * *"
 }
 
+variable "s3_host" {
+  type        = string
+  description = "hostname for s3 bucket"
+  default     = "--host=sfo2.digitaloceanspaces.com  --host-bucket='%(bucket)s.sfo2.digitaloceanspaces.com'"
+}
+
+variable "bucket" {
+  type        = string
+  description = "s3 bucket name"
+  default     = "s3://everylotbot"
+}
+
 resource "kubernetes_cron_job" "everylotbot" {
   metadata {
     name      = var.name
@@ -40,11 +52,26 @@ resource "kubernetes_cron_job" "everylotbot" {
               name    = "everylotbot"
               image   = "consindo/everylotbot:latest"
               command = ["/bin/sh"]
-              args    = ["-c", "{ while true; do echo n; done | cp -i /db/*.sqlite /persistent-db; } && everylot ${var.account} /persistent-db/${var.db} --config /config/config.yaml --search-format '{address}, {city}, New Zealand'"]
+              args    = ["-c", "mkdir /tmp-db && cd /tmp-db && s3cmd ${var.s3_host} get ${var.bucket}/${var.db}.tar.gz && tar -xzf /tmp-db/*.tar.gz && everylot ${var.account} /tmp-db/${var.db}.sqlite --config /config/config.yaml --search-format '{address}, {city}, New Zealand' && tar -czf ${var.db}.tar.gz ${var.db}.sqlite && s3cmd ${var.s3_host} put ${var.db}.tar.gz ${var.bucket}"]
 
-              volume_mount {
-                name       = "everylot-database"
-                mount_path = "/persistent-db"
+              env {
+                name = "AWS_ACCESS_KEY_ID"
+                value_from {
+                  secret_key_ref {
+                    name = "everylot-s3"
+                    key  = "AWS_ACCESS_KEY_ID"
+                  }
+                }
+              }
+
+              env {
+                name = "AWS_SECRET_ACCESS_KEY"
+                value_from {
+                  secret_key_ref {
+                    name = "everylot-s3"
+                    key  = "AWS_SECRET_ACCESS_KEY"
+                  }
+                }
               }
 
               volume_mount {
@@ -53,13 +80,6 @@ resource "kubernetes_cron_job" "everylotbot" {
               }
             }
             restart_policy = "Never"
-
-            volume {
-              name = "everylot-database"
-              persistent_volume_claim {
-                claim_name = "everylot-database"
-              }
-            }
 
             volume {
               name = "everylot-keys"
