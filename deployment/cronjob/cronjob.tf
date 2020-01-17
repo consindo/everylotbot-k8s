@@ -27,6 +27,7 @@ resource "kubernetes_cron_job" "everylotbot" {
   spec {
     schedule = var.schedule
     job_template {
+      metadata {}
       spec {
         template {
           metadata {
