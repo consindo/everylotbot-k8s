@@ -14,8 +14,8 @@ WORKDIR /db
 RUN rm -rf /build-everylotbot
 RUN rm -rf /build-s3cmd
 
-COPY db/*.tar.gz .
-RUN tar -xzf *.tar.gz
+COPY db/*.tar.gz ./
+RUN ls *.tar.gz | xargs -n1 tar -xzf
 RUN rm ./*.tar.gz
 
 ENTRYPOINT ["everylot"]
