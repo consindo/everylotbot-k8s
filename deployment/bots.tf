@@ -3,5 +3,5 @@ module "akl" {
   name     = "akl"
   account  = "everylotakl"
   db       = "everylot_akl"
-  schedule = "*/30 * * * *"
+  schedule = "*/20 * * * *"
 }
