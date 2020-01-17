@@ -30,7 +30,7 @@ resource "kubernetes_cron_job" "everylotbot" {
       spec {
         template {
           metadata {
-            labels {
+            labels = {
               app = "everylotbot"
             }
           }
