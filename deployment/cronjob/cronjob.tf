@@ -40,7 +40,7 @@ resource "kubernetes_cron_job" "everylotbot" {
               name    = "everylotbot"
               image   = "consindo/everylotbot:latest"
               command = ["/bin/sh"]
-              args    = ["-c", "{ while true; do echo n; done | cp -i /db/*.sqlite /persistent-db; } && everylot ${var.account} /persistent-db/${var.db} --config /config/config.yaml"]
+              args    = ["-c", "{ while true; do echo n; done | cp -i /db/*.sqlite /persistent-db; } && everylot ${var.account} /persistent-db/${var.db} --config /config/config.yaml --search-format '{address}, {city}, New Zealand'"]
 
               volume_mount {
                 name       = "everylot-database"
