@@ -10,7 +10,7 @@ resource "kubernetes_secret" "everylot_keys" {
 }
 
 variable "config_yaml" {
-  type        = "string"
+  type        = string
   description = "YAML file with secret access keys"
   default     = ""
 }
