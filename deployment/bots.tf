@@ -13,3 +13,11 @@ module "wlg" {
   db       = "everylot_wlg"
   schedule = "*/30 * * * *"
 }
+
+module "chc" {
+  source   = "./cronjob"
+  name     = "chc"
+  account  = "everylotchc"
+  db       = "everylot_chc"
+  schedule = "*/30 * * * *"
+}
