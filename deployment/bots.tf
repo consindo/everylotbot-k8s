@@ -28,4 +28,5 @@ module "tokyo" {
   account  = "everylottokyo"
   db       = "everylot_tokyo"
   schedule = "*/33 * * * *"
+  country  = "日本"
 }

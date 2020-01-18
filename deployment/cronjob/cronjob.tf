@@ -31,6 +31,12 @@ variable "bucket" {
   default     = "s3://everylotbot"
 }
 
+variable "country" {
+  type        = string
+  description = "country"
+  default     = "New Zealand"
+}
+
 resource "kubernetes_cron_job" "everylotbot" {
   metadata {
     name      = var.name
@@ -52,7 +58,7 @@ resource "kubernetes_cron_job" "everylotbot" {
               name    = "everylotbot"
               image   = "consindo/everylotbot:latest"
               command = ["/bin/sh"]
-              args    = ["-c", "mkdir /tmp-db && cd /tmp-db && s3cmd ${var.s3_host} get ${var.bucket}/${var.db}.tar.gz && tar -xzf /tmp-db/*.tar.gz && everylot ${var.account} /tmp-db/${var.db}.sqlite --config /config/config.yaml --search-format '{address}, {city}, New Zealand' && tar -czf ${var.db}.tar.gz ${var.db}.sqlite && s3cmd ${var.s3_host} put ${var.db}.tar.gz ${var.bucket}"]
+              args    = ["-c", "mkdir /tmp-db && cd /tmp-db && s3cmd ${var.s3_host} get ${var.bucket}/${var.db}.tar.gz && tar -xzf /tmp-db/*.tar.gz && everylot ${var.account} /tmp-db/${var.db}.sqlite --config /config/config.yaml --search-format '{address}, {city}, ${var.country}' && tar -czf ${var.db}.tar.gz ${var.db}.sqlite && s3cmd ${var.s3_host} put ${var.db}.tar.gz ${var.bucket}"]
 
               env {
                 name = "AWS_ACCESS_KEY_ID"
