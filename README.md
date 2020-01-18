@@ -16,4 +16,5 @@ This bot currently runs:
 
 - <https://twitter.com/everylotakl>
 - <https://twitter.com/everylotchc>
+- <https://twitter.com/everylottokyo>
 - <https://twitter.com/everylotwlg>

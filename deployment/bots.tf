@@ -21,3 +21,11 @@ module "chc" {
   db       = "everylot_chc"
   schedule = "*/32 * * * *"
 }
+
+module "tokyo" {
+  source   = "./cronjob"
+  name     = "tokyo"
+  account  = "everylottokyo"
+  db       = "everylot_tokyo"
+  schedule = "*/33 * * * *"
+}
