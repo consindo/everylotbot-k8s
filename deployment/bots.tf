@@ -3,7 +3,7 @@ module "akl" {
   name     = "akl"
   account  = "everylotakl"
   db       = "everylot_akl"
-  schedule = "*/20 * * * *"
+  schedule = "*/60 * * * *"
 }
 
 module "wlg" {
@@ -11,7 +11,7 @@ module "wlg" {
   name     = "wlg"
   account  = "everylotwlg"
   db       = "everylot_wlg"
-  schedule = "*/31 * * * *"
+  schedule = "*/60 * * * *"
 }
 
 module "chc" {
@@ -19,7 +19,7 @@ module "chc" {
   name     = "chc"
   account  = "everylotchc"
   db       = "everylot_chc"
-  schedule = "*/32 * * * *"
+  schedule = "*/60 * * * *"
 }
 
 module "tokyo" {
@@ -27,6 +27,6 @@ module "tokyo" {
   name     = "tokyo"
   account  = "everylottokyo"
   db       = "everylot_tokyo"
-  schedule = "*/33 * * * *"
+  schedule = "*/60 * * * *"
   country  = "日本"
 }
