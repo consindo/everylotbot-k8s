@@ -1,4 +1,5 @@
 FROM python:alpine
+ARG EVERYLOT_KEY
 WORKDIR /build-everylotbot
 RUN apk add --no-cache git
 RUN git clone https://consindo:$EVERYLOT_KEY@github.com/consindo/everylotbot.git .
