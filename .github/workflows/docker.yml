@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build & Publish Docker Image
-      uses: elgohr/Publish-Docker-Github-Action@2.12
+      uses: elgohr/Publish-Docker-Github-Action@master
       env:
         EVERYLOT_KEY: ${{ secrets.EVERYLOT_KEY }}
       with:
