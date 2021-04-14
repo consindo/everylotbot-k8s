@@ -12,6 +12,7 @@ module "wlg" {
   account  = "everylotwlg"
   db       = "everylot_wlg"
   schedule = "*/60 * * * *"
+  price    = " --get-price true"
 }
 
 module "chc" {
