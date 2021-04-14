@@ -1,7 +1,7 @@
 FROM python:alpine
 WORKDIR /build-everylotbot
 RUN apk add --no-cache git
-RUN git clone https://github.com/consindo/everylotbot.git .
+RUN git clone https://consindo:${GITHUB_TOKEN}@github.com/consindo/everylotbot.git .
 RUN python setup.py install
 
 WORKDIR /build-s3cmd
