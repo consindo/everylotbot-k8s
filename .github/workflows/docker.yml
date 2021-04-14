@@ -13,10 +13,10 @@ jobs:
     - name: Build & Publish Docker Image
       uses: elgohr/Publish-Docker-Github-Action@2.12
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        EVERYLOT_KEY: ${{ secrets.EVERYLOT_KEY }}
       with:
         name: consindo/everylotbot
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-        buildargs: 'GITHUB_TOKEN'
+        buildargs: 'EVERYLOT_KEY'
 
