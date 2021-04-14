@@ -4,6 +4,7 @@ module "akl" {
   account  = "everylotakl"
   db       = "everylot_akl"
   schedule = "*/60 * * * *"
+  price    = " --get-price true"
 }
 
 module "wlg" {
@@ -21,6 +22,7 @@ module "chc" {
   account  = "everylotchc"
   db       = "everylot_chc"
   schedule = "*/60 * * * *"
+  price    = " --get-price true"
 }
 
 module "tokyo" {
